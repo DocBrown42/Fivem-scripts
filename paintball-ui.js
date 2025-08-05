@@ -431,4 +431,6 @@ document.addEventListener('DOMContentLoaded', function() {
     closeBtn.addEventListener('click', function() {
       sendCallback('closeMenu');
     });
-  })();
+
+    console.log('Paintball NUI initialized successfully');
+  });
