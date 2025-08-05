@@ -218,13 +218,14 @@ document.addEventListener('DOMContentLoaded', function() {
           startBtn.style.marginTop = '15px';
           startBtn.textContent = 'Start Game';
           startBtn.onclick = function() {
+            console.log('Start Game button clicked');
             // Update lobby settings before starting. We call updateLobby
             // instead of createLobby because the lobby already exists. Once
             // settings are updated, trigger startGame.
-            const killVal = parseInt(killInput.value, 10) || 20;
-            const timeVal = parseInt(timeInput.value, 10) || 0;
-            let weaponIndex = 1;
-            const selectEl = document.getElementById('weaponSelect');
+            var killVal = parseInt(killInput.value, 10) || 20;
+            var timeVal = parseInt(timeInput.value, 10) || 0;
+            var weaponIndex = 1;
+            var selectEl = document.getElementById('weaponSelect');
             if (selectEl && selectEl.value) {
               weaponIndex = parseInt(selectEl.value, 10) || 1;
             }
@@ -232,9 +233,11 @@ document.addEventListener('DOMContentLoaded', function() {
               killLimit: killVal,
               timeLimit: timeVal,
               weaponIndex: weaponIndex
-            }).then(function() {
-              sendCallback('startGame');
             });
+            // Use setTimeout instead of .then() since XMLHttpRequest doesn't return a Promise
+            setTimeout(function() {
+              sendCallback('startGame');
+            }, 100);
           };
           menuContent.appendChild(startBtn);
   
