@@ -228,8 +228,15 @@ end)
 -- thread if a time limit is set.
 RegisterNetEvent('qb-paintball:startGame', function()
     local src = source
-    if src ~= Lobby.host then return end
-    if Lobby.started then return end
+    print(string.format("🎮 Start game request from player %s (host: %s)", src, Lobby.host))
+    if src ~= Lobby.host then
+        print("❌ Player is not the host")
+        return
+    end
+    if Lobby.started then
+        print("❌ Game already started")
+        return
+    end
     -- Require at least 2 players to start the game. If there are fewer
     -- than two participants, notify the host and do not begin.
     local playerCount = 0
@@ -585,59 +592,6 @@ RegisterNetEvent('qb-paintball:requestWeapons', function()
     TriggerClientEvent('qb-paintball:receiveWeapons', src, weapons)
 end)
 
--- Block common emergency alert events during paintball matches
-if Config.DisablePoliceAlerts.Enabled then
-    -- Block officer down alerts
-    AddEventHandler('police:officerDown', function()
-        local src = source
-        if isPlayerInPaintball(src) then
-            CancelEvent()
-        end
-    end)
-
-    -- Block EMS alerts
-    AddEventHandler('ems:playerDown', function()
-        local src = source
-        if isPlayerInPaintball(src) then
-            CancelEvent()
-        end
-    end)
-
-    -- Block hospital alerts
-    AddEventHandler('hospital:server:ambulanceAlert', function()
-        local src = source
-        if isPlayerInPaintball(src) then
-            CancelEvent()
-        end
-    end)
-
-    -- Block ps-dispatch alerts including officer down (10-99)
-    AddEventHandler('ps-dispatch:server:notify', function(data)
-        local src = source
-        if isPlayerInPaintball(src) then
-            -- Block officer down alerts (10-99)
-            if data.code == '10-99' or data.codeName == 'officerdown' then
-                CancelEvent()
-                return
-            end
-            -- Block gunshot alerts (10-71)
-            if data.code == '10-71' or data.code == 'shots_fired' or data.dispatchCode == '10-71' then
-                CancelEvent()
-                return
-            end
-            -- Block all alerts if configured
-            if Config.DisablePoliceAlerts.DisableAllEmergencyAlerts then
-                CancelEvent()
-                return
-            end
-        end
-    end)
-
-    -- Block general dispatch alerts
-    AddEventHandler('dispatch:server:notify', function()
-        local src = source
-        if isPlayerInPaintball(src) then
-            CancelEvent()
-        end
-    end)
-end
+-- Note: Emergency alert blocking has been disabled to prevent serialization errors
+-- If you need to block alerts, consider using client-side blocking instead
+-- or implementing a different approach that doesn't interfere with event data

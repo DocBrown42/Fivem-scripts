@@ -59,7 +59,7 @@ Config.Rewards = {
 
 -- Police/Dispatch Settings
 Config.DisablePoliceAlerts = {
-    Enabled = true,                  -- Set to false to allow police alerts during matches
+    Enabled = false,                 -- DISABLED: Prevents serialization errors with emergency alerts
     DisableDispatch = true,          -- Disable ps-dispatch alerts
     DisableMDTAlerts = true,         -- Disable MDT alerts
     DisableGunshots = true,          -- Disable gunshot alerts

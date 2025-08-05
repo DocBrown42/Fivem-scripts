@@ -290,6 +290,7 @@ end)
 
 -- NUI callback: host requests to start the match.
 RegisterNUICallback('startGame', function(data, cb)
+    print("🎮 Start game button clicked - sending to server")
     TriggerServerEvent('qb-paintball:startGame')
     cb({})
 end)
