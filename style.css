@@ -1,0 +1,170 @@
+/* style.css
+ * Styling for the paintball NUI. Defines both the lobby menu and the
+ * in‑game scoreboard. The design aims to be modern and clean with
+ * translucent backgrounds and subtle colour accents for team scores. */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Overlay for the lobby menu. Covers the entire screen when shown. */
+#menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+}
+
+/* Container that holds the lobby UI elements. */
+.menu-container {
+  position: relative;
+  width: 460px;
+  background: #1e1e2e;
+  border-radius: 8px;
+  padding: 25px 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  color: #d8dee9;
+}
+
+.title {
+  margin: 0;
+  font-size: 28px;
+  text-align: center;
+  color: #eceff4;
+}
+
+.menu-content {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input[type="number"],
+input[type="text"],
+select {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 4px;
+  border: none;
+  background: #2d2d44;
+  color: #eceff4;
+  font-size: 14px;
+}
+
+label {
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #d8dee9;
+}
+
+button.action {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  background: #5e81ac;
+  color: #eceff4;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button.action:hover {
+  background: #81a1c1;
+}
+
+button.danger {
+  background: #bf616a;
+}
+
+button.danger:hover {
+  background: #d4777f;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: #888;
+  font-size: 26px;
+  cursor: pointer;
+  outline: none;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #eceff4;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Scoreboard overlay shown during a match. Displays team scores and timer. */
+#scoreboard {
+  position: fixed;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 6px;
+  padding: 10px 20px;
+  z-index: 999;
+  color: #eceff4;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-width: 260px;
+}
+
+.score-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.score-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.team-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.team-score .team-name {
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+  color: #d8dee9;
+}
+
+.team-score.red .score-value {
+  color: #bf616a;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.team-score.blue .score-value {
+  color: #5e81ac;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.timer {
+  font-size: 18px;
+  margin-top: 4px;
+  color: #eceff4;
+}

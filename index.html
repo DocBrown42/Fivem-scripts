@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http‑equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paintball Lobby</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Lobby menu overlay. Hidden by default; toggled via NUI messages. -->
+    <div id="menu" class="hidden">
+      <div class="menu-container">
+        <button id="close-btn" class="close-btn">×</button>
+        <h1 class="title">Paintball Lobby</h1>
+        <div id="menu-content" class="menu-content"></div>
+      </div>
+    </div>
+
+    <!-- Scoreboard overlay. Displays team scores and remaining time when in game. -->
+    <div id="scoreboard" class="hidden">
+      <div class="score-container">
+        <div class="score-row">
+          <div class="team-score red">
+            <span class="team-name">RED</span>
+            <span id="red-score" class="score-value">0</span>
+          </div>
+          <div class="team-score blue">
+            <span class="team-name">BLUE</span>
+            <span id="blue-score" class="score-value">0</span>
+          </div>
+        </div>
+        <div id="timer" class="timer">--:--</div>
+      </div>
+    </div>
+
+    <script src="scripts.js"></script>
+  </body>
+</html>
